@@ -8,6 +8,8 @@ const ProfileUser = (props) => {
         <main>
             <h1>My Profile</h1>
             <UserProfile username={props.match.params.username} /> 
+
+            
             <h1>Collection</h1>
             <CollectionPhoto username={props.match.params.username}/>
         </main>

@@ -7,12 +7,12 @@ const unsplash = new Unsplash({
     accessKey: "EruaGNRLyIbzUuvY4tAdsN8mCrH95kiwLtDQ0PsMm4o",
 });
 
-const Search = () => {//setQuery ค่าที่เก็บจาก ช่อง ค้นหา
+const Search = () => {
     const [query, setQuery] = useState(""); 
     const [photo, setPhoto] = useState([]);
 
-    const searchPhotos = () => {
-     
+    const searchPhotos = async (e) => {
+        e.preventDefault();//e.preventDefault() ถูกใช้เพื่อไม่ให้ browser reload หรือ refresh 
         unsplash.search.photos(query).then(toJson).then((json) => {setPhoto(json.results);
             });
 
@@ -23,7 +23,7 @@ const Search = () => {//setQuery ค่าที่เก็บจาก ช่�
             <form className="form" onSubmit={searchPhotos}> {" "}
                 <label className="label" htmlFor="query">{" "}
         </label>
-                <input type="text"name="query"className="input"placeholder={``}value={query}onChange={setQuery}
+                <input type="text"name="query"className="input"placeholder={``}value={query}onChange={(e) => setQuery(e.target.value)}
                 />
                 <button type="submit" className="button">
                     ค้นหา
