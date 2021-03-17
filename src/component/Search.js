@@ -6,18 +6,15 @@ import {Row} from 'reactstrap';
 const unsplash = new Unsplash({
     accessKey: "EruaGNRLyIbzUuvY4tAdsN8mCrH95kiwLtDQ0PsMm4o",
 });
-
 const Search = () => {
     const [query, setQuery] = useState(""); 
     const [photo, setPhoto] = useState([]);
 
-    const searchPhotos = async (e) => {
+    const searchPhotos = (e) => {
         e.preventDefault();//e.preventDefault() ถูกใช้เพื่อไม่ให้ browser reload หรือ refresh 
         unsplash.search.photos(query).then(toJson).then((json) => {setPhoto(json.results);
             });
-
     };
-
     return ( //event เมื่อกด ค้นหาจะทำการดึงข้อมูจจาก unsplash ที่ serach
         <>            
             <form className="form" onSubmit={searchPhotos}> {" "}
