@@ -7,14 +7,12 @@ const unsplash = new Unsplash({
     accessKey: "EruaGNRLyIbzUuvY4tAdsN8mCrH95kiwLtDQ0PsMm4o",
 });
 
-const Search = () => {
+const Search = () => {//setQuery ค่าที่เก็บจาก ช่อง ค้นหา
     const [query, setQuery] = useState(""); 
     const [photo, setPhoto] = useState([]);
 
-    const searchPhotos = async (e) => {
-        e.preventDefault(); //ใช้หยุดการเกิดเหตุการณ์ใดๆขึ้น ที่เป็นเหตุการณ์ของ browser 
-        //คือเหตุการณ์ที่ไม่ได้เกิดขึ้นจากการที่เรากำหนดให้มัน
-        //เช่น จะไม่ link ไปยังหน้าถัดไปของการ click tag a
+    const searchPhotos = () => {
+     
         unsplash.search.photos(query).then(toJson).then((json) => {setPhoto(json.results);
             });
 
@@ -22,13 +20,10 @@ const Search = () => {
 
     return ( //event เมื่อกด ค้นหาจะทำการดึงข้อมูจจาก unsplash ที่ serach
         <>            
-            <form className="form" onSubmit={searchPhotos}> 
-                {" "}
-                <label className="label" htmlFor="query">
-                    {" "}
- 
+            <form className="form" onSubmit={searchPhotos}> {" "}
+                <label className="label" htmlFor="query">{" "}
         </label>
-                <input type="text"name="query"className="input"placeholder={``}value={query}onChange={(e) => setQuery(e.target.value)}
+                <input type="text"name="query"className="input"placeholder={``}value={query}onChange={setQuery}
                 />
                 <button type="submit" className="button">
                     ค้นหา
